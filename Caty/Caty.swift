@@ -8,9 +8,7 @@ import Foundation
 
 public class  RetriveImageTask {
     public  static  let empty = RetriveImageTask()
-
     var cancelledBeforeDownloadStarting: Bool = false
-
     public var downloadTask: RetriveImageDownloadTask?
 
 }

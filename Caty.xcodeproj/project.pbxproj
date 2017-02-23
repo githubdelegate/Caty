@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA9C4465082886CCF19B987D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA9C4179ADB634D915E37A84 /* Main.storyboard */; };
 		AA9C45C71D9B99D420C5C20A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA9C4C0A60256AA977119A56 /* Info.plist */; };
 		AA9C45E00D213CEF773E1000 /* Caty.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C4F79C548C631B682C077 /* Caty.swift */; };
 		AA9C48B0EABF8BE16538D9F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C413312818A063149D3D2 /* AppDelegate.swift */; };
@@ -19,7 +18,6 @@
 
 /* Begin PBXFileReference section */
 		AA9C40366BEA80FD06089666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA9C40A6A0130D824B4D6D5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA9C413312818A063149D3D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA9C444632527C42F73B2622 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA9C4473DF33AFB712DCB99D /* Caty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caty.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +60,6 @@
 				AA9C4C0A60256AA977119A56 /* Info.plist */,
 				AA9C40366BEA80FD06089666 /* Assets.xcassets */,
 				AA9C413312818A063149D3D2 /* AppDelegate.swift */,
-				AA9C4179ADB634D915E37A84 /* Main.storyboard */,
 				AA9C444632527C42F73B2622 /* ViewController.swift */,
 				AA9C48BB0DD65BC038CAEF1E /* ImageDownloader.swift */,
 				AA9C4F79C548C631B682C077 /* Caty.swift */,
@@ -98,6 +95,11 @@
 			isa = PBXProject;
 			attributes = {
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
+				TargetAttributes = {
+					AA9C48539F1EDFE2367814FB = {
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = AA9C40EF50B39A31B006D60A /* Build configuration list for PBXProject "Caty" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -123,7 +125,6 @@
 			files = (
 				AA9C45C71D9B99D420C5C20A /* Info.plist in Resources */,
 				AA9C4C7965605BE093391F93 /* Assets.xcassets in Resources */,
-				AA9C4465082886CCF19B987D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,41 +145,40 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		AA9C4179ADB634D915E37A84 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA9C40A6A0130D824B4D6D5E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		AA9C43410B50BA907055CAB4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Caty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ios.Caty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos10.2;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		AA9C45F1B8D60000988CC81C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Caty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ios.Caty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos10.2;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -292,6 +292,7 @@
 				AA9C43410B50BA907055CAB4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

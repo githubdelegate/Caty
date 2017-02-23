@@ -71,11 +71,29 @@ open class ImageDownloader {
 
 
     public static let `default` = ImageDownloader(name: "default")
+    
+    
+    fileprivate let sessionHandler: ImageDownloaderSessionHandler
+    fileprivate var session: URLSession?
+    
+    open var sessionConfigure = URLSessionConfiguration.ephemeral{
+        didSet{
+            session = URLSession(configuration: sessionConfigure, delegate: sessionHandler, delegateQueue: OperationQueue.main)
+        }
+    }
+    
 
     public init(name: String) {
         if name.isEmpty {
             fatalError("I need a name")
         }
+        
+        barrierQueue = DispatchQueue(label: "barrieQueue", attributes: .concurrent)
+        sessionHandler = ImageDownloaderSessionHandler()
+        
+        session = URLSession(configuration: sessionConfigure, delegate: sessionHandler, delegateQueue: .main)
+        
+        
     }
 
     open func downloadImage(with url: URL,
@@ -103,7 +121,6 @@ public protocol ImageDownloaderDelegate: class {
     func imageDownloader(_ downloader: ImageDownloader, didDownload image: Image, for url: URL, with response: HTTPURLResponse?)
 }
 
-
 class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate {
     var downloadHolder: ImageDownloader?
 
@@ -115,10 +132,9 @@ class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate {
             return
         }
 
-        if let statusCode = (response as? HTTPURLResponse).statusCode,
+        if let statusCode = (response as? HTTPURLResponse)?.statusCode,
            let url = dataTask.originalRequest?.url,
-           !(downloader.delegate ?? downloader).isValidStatusCode(statusCode, downloader) {
-
+           !(downloader.delegate)!.isValidStatusCode(statusCode, for: downloader) {
         }
         completionHandler(.allow)
     }
@@ -138,7 +154,6 @@ class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate {
                     }
                 }
             }
-
         }
     }
 
@@ -174,14 +189,14 @@ class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate {
 
         guard  error == nil else {
             callCompletionHandlerFailure(error: error!, url: url)
+            return
         }
 
         if let fetchLoad = downloadHolder?.fetchLoad(for: url) {
             for content in fetchLoad.contents {
-
-                if let image = UIImage(data: (fetchLoad.responseData as Data) {
-                    content.completionBlock(image, nil, url, fetchLoad.responseData as Data)
-                }
+                
+                let image = UIImage(data: fetchLoad.responseData as Data)
+                content.completionBlock?(image,nil,url,fetchLoad.responseData as Data)
             }
         }
     }
