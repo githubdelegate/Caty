@@ -12,6 +12,7 @@
 		AA9C45E00D213CEF773E1000 /* Caty.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C4F79C548C631B682C077 /* Caty.swift */; };
 		AA9C48B0EABF8BE16538D9F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C413312818A063149D3D2 /* AppDelegate.swift */; };
 		AA9C49CE2F04707B503CCDCB /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C48BB0DD65BC038CAEF1E /* ImageDownloader.swift */; };
+		AA9C4B8DDA4CA13A5DA0021A /* ThreadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C4A7FDD5476018C3C6B28 /* ThreadHelper.swift */; };
 		AA9C4C7965605BE093391F93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9C40366BEA80FD06089666 /* Assets.xcassets */; };
 		AA9C4CE8E8F100583B6F6F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C444632527C42F73B2622 /* ViewController.swift */; };
 /* End PBXBuildFile section */
@@ -23,6 +24,7 @@
 		AA9C444632527C42F73B2622 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA9C4473DF33AFB712DCB99D /* Caty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA9C48BB0DD65BC038CAEF1E /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		AA9C4A7FDD5476018C3C6B28 /* ThreadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadHelper.swift; sourceTree = "<group>"; };
 		AA9C4C0A60256AA977119A56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		AA9C4F79C548C631B682C077 /* Caty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Caty.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 				AA9C444632527C42F73B2622 /* ViewController.swift */,
 				AA9C48BB0DD65BC038CAEF1E /* ImageDownloader.swift */,
 				AA9C4F79C548C631B682C077 /* Caty.swift */,
+				AA9C4A7FDD5476018C3C6B28 /* ThreadHelper.swift */,
 			);
 			path = Caty;
 			sourceTree = "<group>";
@@ -135,6 +138,7 @@
 				AA9C4CE8E8F100583B6F6F30 /* ViewController.swift in Sources */,
 				AA9C49CE2F04707B503CCDCB /* ImageDownloader.swift in Sources */,
 				AA9C45E00D213CEF773E1000 /* Caty.swift in Sources */,
+				AA9C4B8DDA4CA13A5DA0021A /* ThreadHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

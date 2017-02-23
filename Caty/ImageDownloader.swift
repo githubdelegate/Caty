@@ -4,29 +4,29 @@
 //
 
 import Foundation
-import  UIKit
+import UIKit
 
 
-public  typealias  Image = UIImage
-public  typealias DownloadProgressBlock = ((_ receivedSize: Int,_ totalSize: Int) -> ())
-public  typealias  CompletionHandler = ((_ image: Image?,_ error:NSError?,_ imageURL: URL?) -> ())
-public  typealias  ImageDownloaderProgressBlock = DownloadProgressBlock
-public  typealias  ImageDownloaderCompletionHandler = ((_ image: Image?, _ error: NSError?,_ url: URL?,_ originalData: Data?) -> ())
+public typealias Image = UIImage
+public typealias DownloadProgressBlock = ((_ receivedSize: Int, _ totalSize: Int) -> ())
+public typealias CompletionHandler = ((_ image: Image?, _ error: NSError?, _ imageURL: URL?) -> ())
+public typealias ImageDownloaderProgressBlock = DownloadProgressBlock
+public typealias ImageDownloaderCompletionHandler = ((_ image: Image?, _ error: NSError?, _ url: URL?, _ originalData: Data?) -> ())
 
 public struct RetriveImageDownloadTask {
-    let  internalTask: URLSessionDataTask
+    let internalTask: URLSessionDataTask
 
-    public  private(set) weak  var ownerDownloader: ImageDownloader?
+    public private(set) weak var ownerDownloader: ImageDownloader?
 
-    public  func cancel() {
+    public func cancel() {
 
     }
 
-    public  var url: URL?{
-        return  internalTask.originalRequest?.url
+    public var url: URL? {
+        return internalTask.originalRequest?.url
     }
 
-    public  var priority: Float{
+    public var priority: Float {
         get {
             return internalTask.priority
         }
@@ -39,53 +39,72 @@ public struct RetriveImageDownloadTask {
 
 open class ImageDownloader {
 
-    typealias  CallbackPair = (progressBlock: ImageDownloaderProgressBlock?,completionBlock: ImageDownloaderCompletionHandler?)
+    typealias CallbackPair = (progressBlock: ImageDownloaderProgressBlock?, completionBlock: ImageDownloaderCompletionHandler?)
 
-    class ImageFetchLoad{
+    class ImageFetchLoad {
         var contents = [CallbackPair]()
-        var responseData =  NSMutableData()
+        var responseData = NSMutableData()
         var downloadTaskCount = 0
         var downloadTask: RetriveImageDownloadTask?
     }
 
+    var fetchLoads = [URL: ImageFetchLoad]()
+
+    func fetchLoad(for url: URL) -> ImageFetchLoad? {
+        var fetchLoad: ImageFetchLoad?
+        barrierQueue.sync {
+            fetchLoad = fetchLoads[url]
+        }
+        return fetchLoad
+    }
+
+    func clean(for url: URL) {
+        barrierQueue.sync(flags: .barrier) {
+            fetchLoads.removeValue(forKey: url)
+            return
+        }
+    }
+
     // MARK: Internal Property
-    let  barrierQueue: DispatchQueue
+    let barrierQueue: DispatchQueue
     open weak var delegate: ImageDownloaderDelegate?
 
- 
-    public  static let `default` = ImageDownloader(name: "default")
 
-    public  init(name: String){
-        if  name.isEmpty{
+    public static let `default` = ImageDownloader(name: "default")
+
+    public init(name: String) {
+        if name.isEmpty {
             fatalError("I need a name")
         }
     }
 
-    open func downloadImage (with url: URL,
-                             progressBlock:ImageDownloaderProgressBlock? = nil,
-                             completionHandler: ImageDownloaderCompletionHandler? = nil) {
-                return downloadImage(with: url, retrieveImageTask: nil, progressBlock: progressBlock, completionHandler: completionHandler)
+    open func downloadImage(with url: URL,
+                            progressBlock: ImageDownloaderProgressBlock? = nil,
+                            completionHandler: ImageDownloaderCompletionHandler? = nil) {
+        return downloadImage(with: url, retrieveImageTask: nil, progressBlock: progressBlock, completionHandler: completionHandler)
     }
 
 }
 
 
-extension ImageDownloader{
-   func downloadImage(with url:URL,
-                      retrieveImageTask: RetriveImageTask?,
-                      progressBlock: ImageDownloaderProgressBlock?,
-                      completionHandler: ImageDownloaderCompletionHandler?){
+extension ImageDownloader {
+    func downloadImage(with url: URL,
+                       retrieveImageTask: RetriveImageTask?,
+                       progressBlock: ImageDownloaderProgressBlock?,
+                       completionHandler: ImageDownloaderCompletionHandler?) {
     }
 }
+
 // MARK: 代理
+
 public protocol ImageDownloaderDelegate: class {
-    func  isValidStatusCode(_ code: Int,for downloader: ImageDownloader) -> Bool
-    func  imageDownloader(_ downloader: ImageDownloader,didDownload image: Image, for url: URL, with response: HTTPURLResponse?)
+    func isValidStatusCode(_ code: Int, for downloader: ImageDownloader) -> Bool
+
+    func imageDownloader(_ downloader: ImageDownloader, didDownload image: Image, for url: URL, with response: HTTPURLResponse?)
 }
 
 
-
-class ImageDownloaderSessionHandler: NSObject,URLSessionDataDelegate{
+class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate {
     var downloadHolder: ImageDownloader?
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse,
@@ -97,8 +116,8 @@ class ImageDownloaderSessionHandler: NSObject,URLSessionDataDelegate{
         }
 
         if let statusCode = (response as? HTTPURLResponse).statusCode,
-           let url =  dataTask.originalRequest?.url,
-           !(downloader.delegate ?? downloader).isValidStatusCode(statusCode,downloader){
+           let url = dataTask.originalRequest?.url,
+           !(downloader.delegate ?? downloader).isValidStatusCode(statusCode, downloader) {
 
         }
         completionHandler(.allow)
@@ -109,15 +128,61 @@ class ImageDownloaderSessionHandler: NSObject,URLSessionDataDelegate{
             return
         }
 
+        if let url = dataTask.originalRequest?.url, let fetchLoad = downloader.fetchLoad(for: url) {
+            fetchLoad.responseData.append(data)
+
+            if let expectedLength = dataTask.response?.expectedContentLength {
+                for content in fetchLoad.contents {
+                    DispatchQueue.main.async {
+                        content.progressBlock?((fetchLoad.responseData.length), Int(expectedLength))
+                    }
+                }
+            }
+
+        }
+    }
 
 
+    func cleanFetchLoad(for url: URL) {
+        guard  let downloader = downloadHolder else {
+            return
+        }
+
+        downloader.clean(for: url)
+
+        if downloader.fetchLoads.isEmpty {
+            downloadHolder = nil
+        }
+    }
+
+    func callCompletionHandlerFailure(error: Error, url: URL) {
+        guard  let downloader = downloadHolder, let fetchLoad = downloader.fetchLoad(for: url) else {
+            return
+        }
+
+        cleanFetchLoad(for: url)
+
+        for content in fetchLoad.contents {
+            content.completionBlock?(nil, error as NSError, url, nil)
+        }
     }
 
     func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        guard  let url = task.originalRequest?.url else {
+            return
+        }
 
+        guard  error == nil else {
+            callCompletionHandlerFailure(error: error!, url: url)
+        }
+
+        if let fetchLoad = downloadHolder?.fetchLoad(for: url) {
+            for content in fetchLoad.contents {
+
+                if let image = UIImage(data: (fetchLoad.responseData as Data) {
+                    content.completionBlock(image, nil, url, fetchLoad.responseData as Data)
+                }
+            }
+        }
     }
-
-
-
-
 }
