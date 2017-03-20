@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA9C45C71D9B99D420C5C20A /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA9C4C0A60256AA977119A56 /* Info.plist */; };
+		428975ED1E65167E00058E15 /* ImageView+Caty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428975EC1E65167E00058E15 /* ImageView+Caty.swift */; };
+		428975EF1E651C2A00058E15 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428975EE1E651C2A00058E15 /* Resource.swift */; };
+		42BDF0701E7FE62800DFC4AB /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BDF06F1E7FE62800DFC4AB /* ImageCache.swift */; };
 		AA9C45E00D213CEF773E1000 /* Caty.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C4F79C548C631B682C077 /* Caty.swift */; };
 		AA9C48B0EABF8BE16538D9F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C413312818A063149D3D2 /* AppDelegate.swift */; };
 		AA9C49CE2F04707B503CCDCB /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C48BB0DD65BC038CAEF1E /* ImageDownloader.swift */; };
@@ -17,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		428975EC1E65167E00058E15 /* ImageView+Caty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageView+Caty.swift"; sourceTree = "<group>"; };
+		428975EE1E651C2A00058E15 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
+		42BDF06F1E7FE62800DFC4AB /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		AA9C40366BEA80FD06089666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA9C413312818A063149D3D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA9C444632527C42F73B2622 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		428975EB1E65165900058E15 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				428975EC1E65167E00058E15 /* ImageView+Caty.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		AA9C49F27D10545B81D4641C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -49,6 +62,7 @@
 		AA9C4B45AD0F95E660407805 = {
 			isa = PBXGroup;
 			children = (
+				428975EB1E65165900058E15 /* Extension */,
 				AA9C49F27D10545B81D4641C /* Products */,
 				AA9C4E6ADBCFA31AE6E29C1F /* Caty */,
 			);
@@ -62,8 +76,10 @@
 				AA9C413312818A063149D3D2 /* AppDelegate.swift */,
 				AA9C444632527C42F73B2622 /* ViewController.swift */,
 				AA9C48BB0DD65BC038CAEF1E /* ImageDownloader.swift */,
+				42BDF06F1E7FE62800DFC4AB /* ImageCache.swift */,
 				AA9C4F79C548C631B682C077 /* Caty.swift */,
 				AA9C4A7FDD5476018C3C6B28 /* ThreadHelper.swift */,
+				428975EE1E651C2A00058E15 /* Resource.swift */,
 			);
 			path = Caty;
 			sourceTree = "<group>";
@@ -94,6 +110,7 @@
 		AA9C41E16913D2ADFB76E978 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "___FULLUSERNAME___";
 				TargetAttributes = {
 					AA9C48539F1EDFE2367814FB = {
@@ -123,7 +140,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA9C45C71D9B99D420C5C20A /* Info.plist in Resources */,
 				AA9C4C7965605BE093391F93 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,9 +153,12 @@
 			files = (
 				AA9C48B0EABF8BE16538D9F7 /* AppDelegate.swift in Sources */,
 				AA9C4CE8E8F100583B6F6F30 /* ViewController.swift in Sources */,
+				42BDF0701E7FE62800DFC4AB /* ImageCache.swift in Sources */,
 				AA9C49CE2F04707B503CCDCB /* ImageDownloader.swift in Sources */,
 				AA9C45E00D213CEF773E1000 /* Caty.swift in Sources */,
 				AA9C4B8DDA4CA13A5DA0021A /* ThreadHelper.swift in Sources */,
+				428975ED1E65167E00058E15 /* ImageView+Caty.swift in Sources */,
+				428975EF1E651C2A00058E15 /* Resource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +176,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ios.Caty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos10.2;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -175,7 +194,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ios.Caty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos10.2;
+				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

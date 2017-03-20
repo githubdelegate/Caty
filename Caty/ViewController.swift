@@ -12,16 +12,21 @@ import UIKit
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+        super.viewDidLoad()
+    
+        
+        self.view.backgroundColor = UIColor.red
+        
+        let webImageUrl = "https://raw.githubusercontent.com/onevcat/Kingfisher/master/images/kingfisher-2.jpg"
+        
+        let imageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 100, height: 100))
+        self.view.addSubview(imageView)
+        imageView.cy.setImage(with: URL(string:webImageUrl), placeholder: nil, progressBlock: { (progress, total) in
+            NSLog("progress\(progress)--total\(total)")
+        }) { (image, error, url) in
+            NSLog("error\(error)")
+        }
+        
     }
-
-
-    override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-    }
-
-
 
 }
