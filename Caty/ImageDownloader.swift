@@ -12,6 +12,9 @@ public typealias ImageDownloadCompletionBlock = ((_ image: UIImage?, _ error: NS
 public typealias DownloadProgressBlock = ImageDownloadProgressBlock
 public typealias DownloadCompletionBlock = ImageDownloadCompletionBlock
 
+public  typealias Image = UIImage
+
+
 class ImageDownloader {
     
     // 回调对

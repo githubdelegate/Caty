@@ -10,12 +10,15 @@
 		428975ED1E65167E00058E15 /* ImageView+Caty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428975EC1E65167E00058E15 /* ImageView+Caty.swift */; };
 		428975EF1E651C2A00058E15 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428975EE1E651C2A00058E15 /* Resource.swift */; };
 		42BDF0701E7FE62800DFC4AB /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42BDF06F1E7FE62800DFC4AB /* ImageCache.swift */; };
+		AA9C458C5E64DC94386F6AFB /* CatyOptionsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C45384D4C7469AD55EBA9 /* CatyOptionsInfo.swift */; };
 		AA9C45E00D213CEF773E1000 /* Caty.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C4F79C548C631B682C077 /* Caty.swift */; };
 		AA9C48B0EABF8BE16538D9F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C413312818A063149D3D2 /* AppDelegate.swift */; };
 		AA9C49CE2F04707B503CCDCB /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C48BB0DD65BC038CAEF1E /* ImageDownloader.swift */; };
+		AA9C4AADA774EDEF9997EFAB /* CacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C45AA9080827FEE7A47D5 /* CacheSerializer.swift */; };
 		AA9C4B8DDA4CA13A5DA0021A /* ThreadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C4A7FDD5476018C3C6B28 /* ThreadHelper.swift */; };
 		AA9C4C7965605BE093391F93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA9C40366BEA80FD06089666 /* Assets.xcassets */; };
 		AA9C4CE8E8F100583B6F6F30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C444632527C42F73B2622 /* ViewController.swift */; };
+		AA9C4FADF3920CE8CD56FFA3 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9C434CA63F13B2DC19DCA3 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +27,11 @@
 		42BDF06F1E7FE62800DFC4AB /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		AA9C40366BEA80FD06089666 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA9C413312818A063149D3D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA9C434CA63F13B2DC19DCA3 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		AA9C444632527C42F73B2622 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA9C4473DF33AFB712DCB99D /* Caty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Caty.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA9C45384D4C7469AD55EBA9 /* CatyOptionsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatyOptionsInfo.swift; sourceTree = "<group>"; };
+		AA9C45AA9080827FEE7A47D5 /* CacheSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheSerializer.swift; sourceTree = "<group>"; };
 		AA9C48BB0DD65BC038CAEF1E /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		AA9C4A7FDD5476018C3C6B28 /* ThreadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadHelper.swift; sourceTree = "<group>"; };
 		AA9C4C0A60256AA977119A56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -80,6 +86,9 @@
 				AA9C4F79C548C631B682C077 /* Caty.swift */,
 				AA9C4A7FDD5476018C3C6B28 /* ThreadHelper.swift */,
 				428975EE1E651C2A00058E15 /* Resource.swift */,
+				AA9C45AA9080827FEE7A47D5 /* CacheSerializer.swift */,
+				AA9C45384D4C7469AD55EBA9 /* CatyOptionsInfo.swift */,
+				AA9C434CA63F13B2DC19DCA3 /* Image.swift */,
 			);
 			path = Caty;
 			sourceTree = "<group>";
@@ -159,6 +168,9 @@
 				AA9C4B8DDA4CA13A5DA0021A /* ThreadHelper.swift in Sources */,
 				428975ED1E65167E00058E15 /* ImageView+Caty.swift in Sources */,
 				428975EF1E651C2A00058E15 /* Resource.swift in Sources */,
+				AA9C4AADA774EDEF9997EFAB /* CacheSerializer.swift in Sources */,
+				AA9C458C5E64DC94386F6AFB /* CatyOptionsInfo.swift in Sources */,
+				AA9C4FADF3920CE8CD56FFA3 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

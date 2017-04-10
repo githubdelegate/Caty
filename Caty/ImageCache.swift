@@ -18,16 +18,13 @@ public enum CacheType{
 
 class ImageCache {
     
-    fileprivate let memoryCache = NSCache<NSString,AnyObject>()
-    
-    
+    fileprivate let memoryCache = NSCache<NSString,AnyObject>(
+
     open var maxMemoryCost: UInt = 0 {
         didSet {
             self.memoryCache.totalCostLimit = Int(maxMemoryCost)
         }
     }
-    
-    
     
     fileprivate let ioQueue: DispatchQueue
     fileprivate let processQueue: DispatchQueue
@@ -72,7 +69,6 @@ class ImageCache {
             fileManger = FileManager()
         }
         
-        
         #if !os(macOS) && !os(watchOS)
             NotificationCenter.default.addObserver(self, selector: #selector(clearMemoryCache), name: .UIApplicationDidReceiveMemoryWarning, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(cleanExpiredDiskCache), name: .UIApplicationWillTerminate, object: nil)
@@ -83,8 +79,25 @@ class ImageCache {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    
+
+
+    // Mark: -- 存&删
+    func store(_ image: UIImage,
+               original: Data?=nil,
+               processorIdentifier idenifier:String="",
+               cacheSerializer serializer: ) {
+        
+    }
+
+
+    // Mark: -- 取
+    // Mark: -- clean & clear
+    // Mark: -- check cache status
+    // Mark: -- 存&删
+    // Mark: -- Internal helper
+
+
+
     
     
     @objc public func  clearMemoryCache(){}
@@ -96,4 +109,4 @@ class ImageCache {
 
     
 
-}
+} // ImageCache
